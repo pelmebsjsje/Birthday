@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #f3e7fa 0%, #b8d7ff 100%);
+  font-family: 'Arial', sans-serif;
+}
+.confetti {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: fall 6s infinite ease-in;
+  z-index: 0;
+}
+@keyframes fall {
+  0% { transform: translateY(-100vh) rotate(0deg); }
+  100% { transform: translateY(100vh) rotate(720deg); }
+}
+.modal {
+  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.7);
+}
+.gallery img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.gift-button:hover {
+  background: linear-gradient(45deg, #ff6b6b, #ffd60a);
+}
+.pulse {
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
