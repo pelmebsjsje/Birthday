@@ -34,8 +34,36 @@ body {
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
+.gift-button {
+  background: linear-gradient(90deg, #ff6b6b, #ff8e53);
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  transition: all 0.3s ease;
+}
 .gift-button:hover {
-  background: linear-gradient(45deg, #ff6b6b, #ffd60a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+}
+.gift-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 .pulse {
   animation: pulse 2s infinite;
