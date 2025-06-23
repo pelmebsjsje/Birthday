@@ -78,7 +78,7 @@ const App = () => {
           Лиза, ты — свет в моей жизни! От всего сердца желаю тебе счастья, здоровья и бесконечной любви. Пусть каждый момент с тобой будет таким же ярким, как этот день. Я так благодарен, что ты рядом! 💖
         </p>
         <div className="text-center">
-          <p className="text-lg text-gray-600 font-semibold" от, Стаса:)</p>
+          <p className="text-lg text-gray-600 font-semibold">От, Стаса :)</p>
         </div>
       </section>
 
@@ -111,7 +111,7 @@ const App = () => {
 
       <section className="gallery grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full max-w-5xl mb-12">
         <h2 className="text-3xl font-semibold text-purple-600 mb-6 text-center col-span-full">
-          лучшие моменты
+          Наши лучшие моменты
         </h2>
         {[
           'moment1.jpg',
