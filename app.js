@@ -1,22 +1,9 @@
 const App = () => {
-  const [wishes, setWishes] = React.useState(JSON.parse(localStorage.getItem('lizaWishes')) || []);
-  const [newWish, setNewWish] = React.useState('');
   const [selectedImage, setSelectedImage] = React.useState(null);
   const [timeLeft, setTimeLeft] = React.useState('');
   const [isMusicPlaying, setIsMusicPlaying] = React.useState(false);
+  const [showGiftModal, setShowGiftModal] = React.useState(false);
   const audioRef = React.useRef(new Audio('background-music.mp3'));
-
-  React.useEffect(() => {
-    localStorage.setItem('lizaWishes', JSON.stringify(wishes));
-  }, [wishes]);
-
-  const handleWishSubmit = (e) => {
-    e.preventDefault();
-    if (newWish.trim()) {
-      setWishes([...wishes, { text: newWish, id: Date.now() }]);
-      setNewWish('');
-    }
-  };
 
   React.useEffect(() => {
     const colors = ['#ff6b6b', '#ffd60a', '#3abef9', '#ff86c2', '#a0d995'];
@@ -55,7 +42,11 @@ const App = () => {
   };
 
   const getGift = () => {
-    alert('Твой подарок ждёт тебя в Telegram! 🎁');
+    setShowGiftModal(true);
+  };
+
+  const closeGiftModal = () => {
+    setShowGiftModal(false);
   };
 
   const closeModal = (e) => {
@@ -98,44 +89,24 @@ const App = () => {
         <p className="text-4xl font-bold text-pink-600 text-center">{timeLeft}</p>
       </section>
 
-      <section className="mb-12 w-full max-w-3xl">
-        <h2 className="text-3xl font-semibold text-purple-600 mb-6 text-center">
-          Оставь своё пожелание!
-        </h2>
-        <form onSubmit={handleWishSubmit} className="flex flex-col items-center gap-4">
-          <textarea
-            value={newWish}
-            onChange={(e) => setNewWish(e.target.value)}
-            placeholder="Напиши своё пожелание для Лизы..."
-            className="w-full h-32 p-4 rounded-lg border-2 border-pink-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            aria-label="Пожелание для Лизы"
-          />
-          <button
-            type="submit"
-            className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300"
-          >
-            Отправить пожелание
-          </button>
-        </form>
-        <div className="mt-8">
-          {wishes.map((wish) => (
-            <div key={wish.id} className="bg-white p-4 rounded-lg shadow-md mb-4">
-              <p className="text-gray-600">{wish.text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mb-12 w-full max-w-3xl">
-        <h2 className="text-3xl font-semibold text-purple-600 mb-6 text-center">
-          Получи свой подарок!
-        </h2>
+      <section className="mb-12 w-full max-w-3xl text-center">
         <button
           onClick={getGift}
-          className="gift-button bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold py-3 px-8 rounded-lg transition duration-300 mx-auto block text-lg"
+          className="gift-button"
         >
-          🎁 Твой подарок ждёт тебя в Telegram!
+          Получить подарок
         </button>
+        {showGiftModal && (
+          <div className="gift-modal">
+            <p className="text-xl font-semibold text-purple-600 mb-4">🎁 Твой подарок ждёт тебя в Telegram!</p>
+            <button
+              onClick={closeGiftModal}
+              className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
+            >
+              Закрыть
+            </button>
+          </div>
+        )}
       </section>
 
       <section className="gallery grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full max-w-5xl mb-12">
