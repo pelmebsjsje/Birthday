@@ -4,14 +4,12 @@ const App = () => {
   const [selectedImage, setSelectedImage] = React.useState(null);
   const [timeLeft, setTimeLeft] = React.useState('');
   const [isMusicPlaying, setIsMusicPlaying] = React.useState(false);
-  const audioRef = React.useRef(new Audio('assets/audio/background-music.mp3'));
+  const audioRef = React.useRef(new Audio('background-music.mp3'));
 
-  // Save wishes to localStorage
   React.useEffect(() => {
     localStorage.setItem('lizaWishes', JSON.stringify(wishes));
   }, [wishes]);
 
-  // Handle wish submission
   const handleWishSubmit = (e) => {
     e.preventDefault();
     if (newWish.trim()) {
@@ -20,7 +18,6 @@ const App = () => {
     }
   };
 
-  // Generate confetti particles
   React.useEffect(() => {
     const colors = ['#ff6b6b', '#ffd60a', '#3abef9', '#ff86c2', '#a0d995'];
     for (let i = 0; i < 60; i++) {
@@ -33,7 +30,6 @@ const App = () => {
     }
   }, []);
 
-  // Countdown timer
   React.useEffect(() => {
     const updateTimer = () => {
       const now = new Date();
@@ -49,7 +45,6 @@ const App = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Handle music playback
   const toggleMusic = () => {
     if (isMusicPlaying) {
       audioRef.current.pause();
@@ -59,7 +54,6 @@ const App = () => {
     setIsMusicPlaying(!isMusicPlaying);
   };
 
-  // Handle gift button
   const sendGift = () => {
     alert('Виртуальный подарок отправлен Лизе! 🎁');
   };
@@ -84,7 +78,7 @@ const App = () => {
       <section className="bg-white rounded-3xl shadow-2xl p-8 mb-12 w-full max-w-3xl">
         <h2 className="text-3xl font-semibold text-purple-600 mb-6">Поздравление</h2>
         <p className="text-lg text-gray-600 mb-6">
-          Дорогая Лиза, ты — невероятная, яркая и вдохновляющая! Желаем тебе море счастья, любви, приключений и исполнения всех желаний! Пусть каждый день приносит радость, а этот День рождения станет началом нового, удивительного этапа! 💖
+          Дорогая Лиза, ты — невероятная, яркая и вдохновляющая! Желаю тебе море счастья, любви, приключений и исполнения всех желаний! Пусть каждый день приносит радость, а этот День рождения станет началом нового, удивительного этапа! 💖
         </p>
         <div className="text-center">
           <p className="text-lg text-gray-600 font-semibold">С любовью, твои друзья</p>
@@ -143,12 +137,12 @@ const App = () => {
           Наши лучшие моменты
         </h2>
         {[
-          'assets/images/moment1.jpg',
-          'assets/images/moment2.jpg',
-          'assets/images/moment3.jpg',
-          'assets/images/moment4.jpg',
-          'assets/images/moment5.jpg',
-          'assets/images/moment6.jpg',
+          'moment1.jpg',
+          'moment2.jpg',
+          'moment3.jpg',
+          'moment4.jpg',
+          'moment5.jpg',
+          'moment6.jpg',
         ].map((src, index) => (
           <img
             key={index}
