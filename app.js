@@ -23,7 +23,7 @@ const App = () => {
     for (let i = 0; i < 60; i++) {
       const confetti = document.createElement('div');
       confetti.className = 'confetti';
-      confetti.style.backgroundColor = _.colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
       confetti.style.left = `${Math.random() * 100}%`;
       confetti.style.animationDelay = `${Math.random() * 6}s`;
       document.body.appendChild(confetti);
