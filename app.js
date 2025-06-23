@@ -23,7 +23,7 @@ const App = () => {
     for (let i = 0; i < 60; i++) {
       const confetti = document.createElement('div');
       confetti.className = 'confetti';
-      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.backgroundColor = _.colors[Math.floor(Math.random() * colors.length)];
       confetti.style.left = `${Math.random() * 100}%`;
       confetti.style.animationDelay = `${Math.random() * 6}s`;
       document.body.appendChild(confetti);
@@ -54,8 +54,14 @@ const App = () => {
     setIsMusicPlaying(!isMusicPlaying);
   };
 
-  const sendGift = () => {
-    alert('Виртуальный подарок отправлен Лизе! 🎁');
+  const getGift = () => {
+    alert('Твой подарок ждёт тебя в Telegram! 🎁');
+  };
+
+  const closeModal = (e) => {
+    if (e.target.className.includes('modal') || e.target.tagName === 'BUTTON') {
+      setSelectedImage(null);
+    }
   };
 
   return (
@@ -65,7 +71,7 @@ const App = () => {
           С Днём Рождения, Лиза!
         </h1>
         <p className="text-xl md:text-2xl text-gray-700 mt-4">
-          Сегодня твой особенный день, и мы празднуем тебя! 🎉
+          Моя дорогая Лиза, этот день особенный, потому что ты — моя самая важная часть! 🎉
         </p>
         <button
           onClick={toggleMusic}
@@ -76,12 +82,12 @@ const App = () => {
       </header>
 
       <section className="bg-white rounded-3xl shadow-2xl p-8 mb-12 w-full max-w-3xl">
-        <h2 className="text-3xl font-semibold text-purple-600 mb-6">Поздравление</h2>
+        <h2 className="text-3xl font-semibold text-purple-600 mb-6">Поздравление от меня</h2>
         <p className="text-lg text-gray-600 mb-6">
-          Дорогая Лиза, ты — невероятная, яркая и вдохновляющая! Желаю тебе море счастья, любви, приключений и исполнения всех желаний! Пусть каждый день приносит радость, а этот День рождения станет началом нового, удивительного этапа! 💖
+          Лиза, ты — свет в моей жизни! От всего сердца желаю тебе счастья, здоровья и бесконечной любви. Пусть каждый момент с тобой будет таким же ярким, как этот день. Я так благодарен, что ты рядом! 💖
         </p>
         <div className="text-center">
-          <p className="text-lg text-gray-600 font-semibold">С любовью, твои друзья</p>
+          <p className="text-lg text-gray-600 font-semibold">С любовью, [Ваше имя]</p>
         </div>
       </section>
 
@@ -122,13 +128,13 @@ const App = () => {
 
       <section className="mb-12 w-full max-w-3xl">
         <h2 className="text-3xl font-semibold text-purple-600 mb-6 text-center">
-          Отправь виртуальный подарок!
+          Получи свой подарок!
         </h2>
         <button
-          onClick={sendGift}
+          onClick={getGift}
           className="gift-button bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold py-3 px-8 rounded-lg transition duration-300 mx-auto block text-lg"
         >
-          🎁 Подарить сюрприз!
+          🎁 Твой подарок ждёт тебя в Telegram!
         </button>
       </section>
 
@@ -155,8 +161,8 @@ const App = () => {
       </section>
 
       {selectedImage && (
-        <div className="modal fixed inset-0 flex items-center justify-center z-50">
-          <div className="relative bg-white rounded-lg p-4">
+        <div className="modal fixed inset-0 flex items-center justify-center z-50" onClick={closeModal}>
+          <div className="modal-content">
             <button
               onClick={() => setSelectedImage(null)}
               className="absolute top-2 right-2 text-gray-600 hover:text-gray-800 text-2xl"
